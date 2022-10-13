@@ -4,7 +4,12 @@ export default class PagesController {
     public home ({view} : HttpContextContract){
         return view.render('welcome')
     }
-    public about ({params}) {
-      return  params.name ? `The name of product is ${params.name}`:'this is about page';
+    public about ({view , params}:HttpContextContract) {
+        const name = params.name;
+      return  view.render('about',{name})
     }
+    public contact ({view}:HttpContextContract) {
+        return  view.render('contact')
+      }
+
 }

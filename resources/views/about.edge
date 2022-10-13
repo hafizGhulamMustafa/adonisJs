@@ -1,0 +1,10 @@
+{{--  <h1>Hello this is about page</h1>
+<a href="/">back</a>  --}}
+    {{--  @if(name)
+    <p>the name of page is {{name}}</p>
+    @else
+    <p>this is simple about page</p>
+    @endif  --}}
+<p>
+    {{name ? `the name of page is ${name}` : 'this is about page'}}
+</p>

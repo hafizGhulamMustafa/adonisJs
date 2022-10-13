@@ -21,12 +21,15 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', 'PagesController.home')
+Route.get('/about/:name?', 'PagesController.about').as('about')
+Route.get('/contact', 'PagesController.contact').as('contact')
+
 
 // Route.get('/about',async ({response}) => {
 //   return response.send("Hello thi is about page")
 // })
 
-Route.get('/about/:name?','PagesController.about')
+// Route.get('/about/:name?','PagesController.about')
 
 //   // return `Hello the name of the page is ${params.name}`
 // })
