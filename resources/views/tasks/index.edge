@@ -1,7 +1,60 @@
 @layout('layout/app')
 
 @section('content')
-    <h1>Tasks</h1>
-    <p>this is paragraph</p>
+    <div class="columns">
+        <div class="column is-three-fifths is-offset-one-fifth">
+            <div class="bos">
+                <form action="/tasks" method="POST">
+                    {{csrfField()}}
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input type="text" name="title" class="input {{flashMessages.has('errors.title')?'is-danger':' '}}"  placeholder="What need to be done?">
+                        </div>
+                        <div class="control">
+                            <button type="submit" class="button is-link">Add</button>
+                        </div>
+                    </div>
+                    @if(flashMessages.has('errors.title'))
+                    <p class="help is-danger">
+                        {{flashMessages.get('errors.title')}}
+                    </p>
+                    @endif
+                </form>
+            </div>
+            @if(flashMessages.has('notification'))
+                <div class="notification is-success is-light">
+                    {{flashMessages.get('notification')}}
+                </div>
+            @endif
+            <div class="box">
+                <table class="table is-fullwidth">
+                    <tbody>
+                        @each(task in tasks)
+                            <tr>
+                                <td>
+                                    <form action="{{`/tasks/${task.id}?_method=PATCH`}}" method="post">
+                                        {{csrfField()}}
+                                        <label for="completed" class="checkbox"> 
+                                            <input type="checkbox" name="completed" onchange="this.form.submit()">
+                                        </label>
+                                    </form>
+                                </td>
+                                <td>
+                                    {{task.title}}
+                                </td>
+                                <td>
+                                    {{--delete task--}}
+                                </td>
+                            </tr>
+                            @else
+                            <tr>
+                                <td colspan="3" class="has-text-center">No tasks</td>
+                            </tr>
+                        @endeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 @endsection
 
