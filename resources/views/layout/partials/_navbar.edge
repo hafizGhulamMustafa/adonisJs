@@ -3,5 +3,30 @@
         <div class="navbar-brand">
             <a href="/" class="navbar-item">TASKIST</a>
         </div>
+        <div class="navbar-menu">
+            <div class="navbar-end">
+                @if(auth.isLoggedIn)
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">{{auth.user.name}}</a>
+                        <div class="navbar-dropdown">
+                            <a 
+                                href="/logout" 
+                                class="navbar-item"
+                            >
+                            <span class="icon">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </span>
+                            <span>Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                @else
+                    <a href="/register" class="navbar-item">Register</a>
+                    <a href="/login" class="navbar-item">Log in</a>
+                @endif
+            </div>
+        </div>
     </div>
+
+    
 </nav>  

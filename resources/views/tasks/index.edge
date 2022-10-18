@@ -43,7 +43,10 @@
                                     {{task.title}}
                                 </td>
                                 <td>
-                                    {{--delete task--}}
+                                    <form action="{{`/tasks/${task.id}?_method=DELETE`}}" method="post">
+                                    {{csrfField()}}
+                                    <button type="submit" class="delete is-small"></button>
+                                    </form>
                                 </td>
                             </tr>
                             @else
