@@ -7,7 +7,7 @@ export default class TasksController {
         const user = auth.user
         await user?.preload('task')
 
-        const tasks = await Task.all();
+        // const tasks = await Task.all();
         return view.render('tasks/index',{tasks: user?.task})
     }
 
